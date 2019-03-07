@@ -1,0 +1,123 @@
+{
+  "data": {
+    "permission":"Create",
+    "initiation": {
+      "requestedExecutionDate": "2018-08-06T00:00:00+00:00",
+      "instructedAmount": {
+        "amount": "200.00",
+        "currency": "GBP"
+      },
+      "debtorAccount": {
+        "schemeName": "UK.OBIE.SortCodeAccountNumber",
+        "identification": "11280001234567",
+        "name": "Andrea Frost"
+      },
+      "creditorAccount": {
+        "schemeName": "UK.OBIE.SortCodeAccountNumber",
+        "identification": "08080021325698",
+        "name": "Tom Kirkman"
+      },
+      "remittanceInformation": {
+        "reference": "DSR-037",
+        "unstructured": "Internal ops code 5120103"
+      }
+    }
+  },
+  "risk": {
+    "paymentContextCode": "PartyToParty"
+  }
+}
+{
+  "Data": {
+    "ConsentId": "7290",	(Auto)												 Consent_Id
+    "Permission": "Create",						
+    "Status": "AwaitingAuthorisation",	(Auto)											 Status
+    "CreationDateTime": "2018-05-05T15:15:13+00:00",	(Auto)							Creation_Date
+    "StatusUpdateDateTime": "2018-05-05T15:15:13+00:00",(Auto)							Status_update_Date
+    "Initiation": {
+      "RequestedExecutionDate": "2018-08-06T00:00:00+00:00",				Requested_Execution_Date
+      "InstructedAmount": {
+        "Amount": "200.00",													Payment_Amount
+        "Currency": "GBP"													Payment_Currency
+      },
+      "DebtorAccount": {
+        "SchemeName": "UK.OBIE.SortCodeAccountNumber",						SchemeName(Acc)
+        "Identification": "11280001234567",									Identification(ACC)
+        "Name": "Andrea Frost"												Name(ACC )
+      },
+      "CreditorAccount": {
+        "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+        "Identification": "08080021325698",
+        "Name": "Tom Kirkman"
+      },
+      "RemittanceInformation": {
+        "Reference": "DSR-037",												Remittance_Reference
+        "Unstructured": "Internal ops code 5120103"							Remittance_Unstructured
+      }
+    }
+  },
+  "Risk": {
+    "PaymentContextCode": "PartyToParty"									Payment_Context
+  }
+}
+
+{
+    "data": {     
+        "permission": "s",
+        "initiation": {
+            "requestedExecutionDate": "2019-02-26T08:51:05.692+0000",
+            "instructedAmount": {
+                "amount": 500,
+                "currency": "INR"
+            },
+            "debtorAccount": {
+                "schemeName": "debit",
+                "identification": "123",
+                "name": "vino"
+            },
+            "creditorAccount": {
+                "schemeName": "credit",
+                "identification": "345",
+                "name": "biswajit"
+            },
+            "remittanceInformation": {
+                "reference": "DSR-037",
+                "unstructured": "Internal ops code 5120103"
+            }
+        }
+    },
+    "risk": {
+        "paymentContextCode": "risk"
+    }
+}
+
+
+{
+  "data": {
+    "permission":"Create",
+    "initiation": {
+      "requestedExecutionDate": "2018-08-06T00:00:00+00:00",
+      "instructedAmount": {
+        "amount": "200.00",
+        "currency": "GBP"
+      },
+      "debtorAccount": {
+        "schemeName": "UK.OBIE.SortCodeAccountNumber",
+        "identification": "11280001234567",
+        "name": "Andrea Frost"
+      },
+      "creditorAccount": {
+        "schemeName": "UK.OBIE.SortCodeAccountNumber",
+        "identification": "08080021325698",
+        "name": "Tom Kirkman"
+      },
+      "remittanceInformation": {
+        "reference": "DSR-037",
+        "unstructured": "Internal ops code 5120103"
+      }
+    }
+  },
+  "risk": {
+    "paymentContextCode": "PartyToParty"
+  }
+}
