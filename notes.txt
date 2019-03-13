@@ -662,3 +662,103 @@ public class ExceptionHandlerController implements AuthenticationEntryPoint{
 		}
 		
 } 
+SELECT * FROM sakila.account;CREATE TABLE `account` (
+  `identification` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `scheme_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`identification`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `consents` (
+  `consent_id` int(11) NOT NULL,
+  `amount` double DEFAULT NULL,
+  `creation_date_time` datetime DEFAULT NULL,
+  `currency` varchar(255) DEFAULT NULL,
+  `payment_context_code` varchar(255) DEFAULT NULL,
+  `permission` varchar(255) DEFAULT NULL,
+  `reference` varchar(255) DEFAULT NULL,
+  `requested_execution_date` datetime DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `status_update_date_time` datetime DEFAULT NULL,
+  `unstructured` varchar(255) DEFAULT NULL,
+  `creditor_id` varchar(255) DEFAULT NULL,
+  `debtor_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`consent_id`),
+  KEY `FK4qqv0a4yjb6oav01fq524gbfx` (`creditor_id`),
+  KEY `FKg12cnn76prpwxpa11lu1sc48j` (`debtor_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+
+
+server.port=8085
+spring.datasource.url=jdbc:mysql://localhost:3306/sakila
+spring.datasource.username=root
+spring.datasource.password=1234
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=create
+
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type=TRACE
+
+spring.application.name=PAYMNETS
+
+@GetMapping(value = "/domestic-scheduled-payment-consents")
+	@ResponseBody
+	public ResponseEntity<Request> getPayment(@Valid @Pattern(regexp = "[0-9]+", message = "Id should be of digits only")@RequestParam("id")String id) throws CustomPaymentException {
+		Integer consnetId=new Integer(id);
+		Request response = paymentRepository.getPayment(consnetId);
+		return new ResponseEntity<Request>(response, HttpStatus.OK);
+
+	}
+public Request getPayment(Integer id) throws CustomPaymentException{
+		logger.info("*************Requesting for domestic Payments****************");
+		Request response = new Request();
+		Optional<Consents> respConsents= consentsRepository.findById(id);
+		if(respConsents.isPresent()) {
+		Consents consents =respConsents.get();
+		Account creditAccount = consents.getCreditorAccount();
+		Account debitAccount = consents.getDebtorAccount();
+		RemittanceInformation remittanceInformation = new RemittanceInformation();
+		InstructedAmount instructedAmount = new InstructedAmount();
+		instructedAmount.setAmount(consents.getAmount());
+		instructedAmount.setCurrency(consents.getCurrency());
+		remittanceInformation.setReference(consents.getReference());
+		remittanceInformation.setUnstructured(consents.getUnstructured());
+		Initiation initiation = new Initiation();
+		initiation.setRequestedExecutionDate(consents.getRequestedExecutionDate());
+		initiation.setInstructedAmount(instructedAmount);
+		initiation.setCreditorAccount(creditAccount);
+		initiation.setDebtorAccount(debitAccount);
+		initiation.setRemittanceInformation(remittanceInformation);
+		Risk risk = new Risk();
+		risk.setPaymentContextCode(consents.getPaymentContextCode());
+		Data data = new Data();
+		data.setConsentId(consents.getConsentId());
+		data.setCreationDateTime(consents.getCreationDateTime());
+		data.setPermission(consents.getPermission());
+		data.setStatus(consents.getStatus());
+		data.setStatusUpdateDateTime(consents.getStatusUpdateDateTime());
+		data.setInitiation(initiation);
+		response.setData(data);
+		response.setRisk(risk);
+		}
+		else {
+			
+				throw new CustomPaymentException("Domestic payment info not available for id :"+id);
+		}
+		return response;
+	}	
+	
+	
+server.port=9090
+spring.datasource.url=jdbc:mysql://localhost:3306/payments
+spring.datasource.username=root
+spring.datasource.password=1234
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=create
+
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type=TRACE
+	
