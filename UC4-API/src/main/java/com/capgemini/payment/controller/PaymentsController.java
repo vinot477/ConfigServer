@@ -28,6 +28,7 @@ public class PaymentsController {
 	@ResponseBody
 	public ResponseEntity<Request> savePayment(@Valid @RequestBody Request request) {
 		Request response = paymentRepository.savePayment(request);
+		System.out.println("payments controller");
 		return new ResponseEntity<Request>(response, HttpStatus.CREATED);
 
 	}
