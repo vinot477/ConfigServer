@@ -1,0 +1,6 @@
+---
+applications:
+- name: UC4-API
+  memory: 1024M
+  host: UC4-API
+  domain: cfapps.io
