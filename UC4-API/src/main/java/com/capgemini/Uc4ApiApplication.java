@@ -23,6 +23,7 @@ public class Uc4ApiApplication {
 		Uc4ApiApplication ucm =new Uc4ApiApplication();
 		ucm.print();
 		SpringApplication.run(Uc4ApiApplication.class, args);
+		System.out.println("Main");
 		
 	}
 	void print() {
