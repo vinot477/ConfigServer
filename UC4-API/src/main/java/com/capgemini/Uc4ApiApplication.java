@@ -25,6 +25,8 @@ public class Uc4ApiApplication {
 		SpringApplication.run(Uc4ApiApplication.class, args);
 		System.out.println("Main");
 		
+		System.out.println("Main");
+		
 	}
 	void print() {
 		System.out.print("App Name ********"+name);
