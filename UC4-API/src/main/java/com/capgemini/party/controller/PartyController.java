@@ -28,6 +28,7 @@ public class PartyController {
 			@Valid @Pattern(regexp = "[0-9]+", message = "accountId should be of digits only") @NotBlank(message = "accountId cannot not be blank or null") @RequestParam(value = "accountId", required = true) String accountId) {
 		GetPartyRequest request=new GetPartyRequest();
 		GetPartyResponse response=new GetPartyResponse();
+		System.out.println("controller");
 		request.setAccountid(accountId);
 		try {
 		 response = (GetPartyResponse) partyClient
