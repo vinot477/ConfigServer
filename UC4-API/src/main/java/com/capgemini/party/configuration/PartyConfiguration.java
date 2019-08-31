@@ -10,6 +10,7 @@ public class PartyConfiguration {
 	public Jaxb2Marshaller marshaller() {
 		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();		
 		marshaller.setContextPath("com.party");
+		System.out.println("party");
 		return marshaller;
 	}
 	
